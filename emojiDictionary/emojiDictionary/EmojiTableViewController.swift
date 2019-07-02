@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 
 var testproperty = 12
+var porc = 11
 
 class EmojiTableViewController: UITableViewController {
     
