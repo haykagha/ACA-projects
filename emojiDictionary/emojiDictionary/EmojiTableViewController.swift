@@ -48,11 +48,11 @@ class EmojiTableViewController: UITableViewController {
         return cell
     }
     
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return emojiArray.count
     }
     
-    // MARK: harc1 xia vor mejin@ nshanakutyun chuni, edit anelu jamanak?
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         if (fromIndexPath.section == to.section ){
             let movedEmoji = emojiArray[fromIndexPath.section].remove(at: fromIndexPath.row)
@@ -60,7 +60,11 @@ class EmojiTableViewController: UITableViewController {
         }
     }
     
-    
+    // MARK: 2) Vonc anes vor cel@ nshvi
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    }
+
     override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         if sourceIndexPath.section == proposedDestinationIndexPath.section {
             return proposedDestinationIndexPath
@@ -80,7 +84,7 @@ class EmojiTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
+        return .delete
     }
     
     
@@ -90,13 +94,48 @@ class EmojiTableViewController: UITableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, commit
+        editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath:
+        IndexPath) {
+        if editingStyle == .delete {
+            emojiArray[indexPath.section].remove(at: indexPath.row)
+              tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender:
+        Any?) {
+        if segue.identifier == "EditEmoji" {
+            let indexPath = tableView.indexPathForSelectedRow!
+            let emoji = emojiArray[indexPath.section][indexPath.row]
+            let navController = segue.destination as!
+            UINavigationController
+            let addEditEmojiTableViewController = navController.topViewController as! AddEditEmojiTableViewController
+            addEditEmojiTableViewController.emoji = emoji
+        }
+    }
+    
+    // MARK: 1) Es inch tuyn funkciya-a? Xia senc ashxatum> inchen grum mej@?
+    @IBAction func unwindToEmojiTableView(unwindSegue: UIStoryboardSegue) {
+        
+    }
+    
+
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         
         navigationItem.title = "Emoji Dictionary"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    
+    
+    
+    
     
 }
 
