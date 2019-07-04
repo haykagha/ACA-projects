@@ -37,13 +37,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yoF-DF-MeM">
                                                     <rect key="frame" x="32" y="0.0" width="343" height="43.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx6-un-5kW">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx6-un-5kW">
                                                             <rect key="frame" x="0.0" y="0.0" width="343" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BcJ-PL-ATF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BcJ-PL-ATF">
                                                             <rect key="frame" x="0.0" y="22" width="343" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
@@ -114,6 +114,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="cellIspressed:" destination="Hdt-jA-m0F" eventType="editingChanged" id="aY3-dV-kCp"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -140,6 +143,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="cellIspressed:" destination="Hdt-jA-m0F" eventType="editingChanged" id="ryt-9z-7bU"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -166,6 +172,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="cellIspressed:" destination="Hdt-jA-m0F" eventType="editingChanged" id="d7X-KV-dur"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -197,6 +206,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="cellIspressed:" destination="Hdt-jA-m0F" eventType="editingChanged" id="MjE-d9-R26"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -221,12 +233,12 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="WNk-PB-Nma">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="b5f-zm-4jf">
                             <connections>
-                                <segue destination="dk0-ZE-z1O" kind="unwind" unwindAction="unwindToEmojiTableViewWithUnwindSegue:" id="nrO-mh-fV0"/>
+                                <segue destination="dk0-ZE-z1O" kind="unwind" unwindAction="unwindToEmojiTableViewWithSegue:" id="Man-ut-7in"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="YJ6-Ay-ohH">
                             <connections>
-                                <segue destination="dk0-ZE-z1O" kind="unwind" identifier="saveUnwind" unwindAction="unwindToEmojiTableViewWithUnwindSegue:" id="xSM-6m-dRg"/>
+                                <segue destination="dk0-ZE-z1O" kind="unwind" identifier="saveUnwind" unwindAction="unwindToEmojiTableViewWithSegue:" id="AC8-Co-6f7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -241,7 +253,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmz-8B-Q5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dk0-ZE-z1O" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="918" y="-18"/>
+            <point key="canvasLocation" x="889" y="-18"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HJC-ub-EQz">
@@ -277,6 +289,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7yx-CH-2N3"/>
+        <segue reference="B8V-Jn-dcS"/>
     </inferredMetricsTieBreakers>
 </document>

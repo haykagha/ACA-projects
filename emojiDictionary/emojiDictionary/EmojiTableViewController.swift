@@ -14,7 +14,7 @@ import UIKit
 class EmojiTableViewController: UITableViewController {
     
     var emojiArray: [[Emoji]] = [
-        [Emoji(symbol: "🍏", name: "Grinning Face",
+        [Emoji(symbol: "", name: "Grinning Face",
                description: "A typical smiley face.", usage: "happiness"),
          Emoji(symbol: "🍇", name: "Confused Face",
                description: "A confused, puzzled face.", usage: "unsure what to think displeasure"),
@@ -47,22 +47,18 @@ class EmojiTableViewController: UITableViewController {
         cell.showsReorderControl = true
         return cell
     }
-    
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return emojiArray.count
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         if (fromIndexPath.section == to.section ){
             let movedEmoji = emojiArray[fromIndexPath.section].remove(at: fromIndexPath.row)
             emojiArray[to.section].insert(movedEmoji, at: to.row)
         }
-    }
-    
-    // MARK: 2) Vonc anes vor cel@ nshvi
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
     }
 
     override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
@@ -72,6 +68,7 @@ class EmojiTableViewController: UITableViewController {
             return sourceIndexPath
         }
     }
+    
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
         switch section {
@@ -102,40 +99,40 @@ class EmojiTableViewController: UITableViewController {
               tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+//     MARK: 1) TopViewController xi enq grum?
     
     override func prepare(for segue: UIStoryboardSegue, sender:
         Any?) {
         if segue.identifier == "EditEmoji" {
             let indexPath = tableView.indexPathForSelectedRow!
             let emoji = emojiArray[indexPath.section][indexPath.row]
-            let navController = segue.destination as!
-            UINavigationController
+            let navController = segue.destination as! UINavigationController
             let addEditEmojiTableViewController = navController.topViewController as! AddEditEmojiTableViewController
             addEditEmojiTableViewController.emoji = emoji
         }
     }
-    
-    // MARK: 1) Es inch tuyn funkciya-a? Xia senc ashxatum> inchen grum mej@?
-    @IBAction func unwindToEmojiTableView(unwindSegue: UIStoryboardSegue) {
-        
+    @IBAction func unwindToEmojiTableView(segue: UIStoryboardSegue) {
+        guard segue.identifier == "saveUnwind" else { return }
+        let sourceViewController = segue.source as! AddEditEmojiTableViewController
+        if let emoji = sourceViewController.emoji {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                emojiArray[selectedIndexPath.section][selectedIndexPath.row] = emoji
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                let newIndexPath = IndexPath(row: emojiArray[3].count, section: 3)
+                emojiArray[3].append(emoji)
+                tableView.insertRows(at: [newIndexPath], with:  .automatic)
+            }
+        }
     }
     
-
-    
-    
-    
+    // MARK: 2) Aranc comment arac masi, cell@ automat chaper@ vercnuma, inchi meja et method@ grac? u vonc et method@ hanel.
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        
         navigationItem.title = "Emoji Dictionary"
         navigationController?.navigationBar.prefersLargeTitles = true
+//        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = 43.5
     }
-    
-    
-    
-    
-    
-    
 }
 
